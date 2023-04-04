@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f26edfec-f104-4e83-bc32-fd3ebdb52ad3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hw1.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/audio/Audio.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/language/GermanLanguage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/language/ItalianLanguage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/language/Language.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/language/SpanishLanguage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/language/TurkishLanguage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/question/IQuestionInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/question/ListeningQuestion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/question/Question.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/question/ReadingQuestion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/question/SpeakingQuestion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/question/WordMatchingQuestion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/quiz/Quiz.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/unit/Unit.java" afterDir="false" />
-    </list>
+    <list default="true" id="f26edfec-f104-4e83-bc32-fd3ebdb52ad3" name="Changes" comment="add user" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,6 +34,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "WebServerToolWindowFactoryState": "false"
   }
 }]]></component>
@@ -85,6 +62,14 @@
       <updated>1680635910407</updated>
       <workItem from="1680635913106" duration="4911000" />
     </task>
+    <task id="LOCAL-00001" summary="add user">
+      <created>1680644531472</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1680644531472</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -95,10 +80,26 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add user" />
+    <option name="LAST_COMMIT_MESSAGE" value="add user" />
   </component>
 </project>
