@@ -1,3 +1,4 @@
+import language.LanguageCSVGenerator;
 import question.Question;
 import question.ReadingQuestion;
 import random_generator.RandomStringGenerator;
@@ -12,6 +13,11 @@ public class Main {
 		RandomStringGenerator randomStringGenerator = new RandomStringGenerator();
 
 		System.out.println(randomStringGenerator.generate());
+
+
+		LanguageCSVGenerator languageCSVGenerator = new LanguageCSVGenerator();
+
+		languageCSVGenerator.languageGenerate();
 
 
 	}

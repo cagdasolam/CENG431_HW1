@@ -1,20 +1,5 @@
 package user;
 
-import language.EnglishLanguage;
-import language.GermanLanguage;
-import language.ItalianLanguage;
-import language.Language;
-import language.SpanishLanguage;
-import language.TurkishLanguage;
-import random_generator.RandomNumberGenerator;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 public class UserCreator {
 
 	private static final int MIN_QUIZZES = 6; // Minimum number of quizzes a user will take

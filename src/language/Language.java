@@ -5,7 +5,9 @@ import unit.Unit;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Language {
+public class Language {
+
+	private String languageName;
 
 	List<Unit> units = new ArrayList<>();
 

@@ -29,14 +29,14 @@ public class LanguageCSVGenerator {
 	private static final String[] QUESTION_TYPES = {"reading", "listening", "speaking", "word-matching"};
 	private static final int[] QUESTION_POINTS = {10, 7, 8, 5};
 
-	public Language languageGenerate() {
+	public void languageGenerate() {
 		try {
 			File langCsv = new File("./languages.csv");
 			if (!langCsv.exists()){
 				FileWriter writer = new FileWriter("languages.csv");
 
 				// Write header row to CSV file
-				writer.append("Language,Unit,Quiz,Question Type,Question Points,Question\n");
+//				writer.append("Language,Unit,Quiz,Question Type,Question Points,Question\n");
 
 				// Generate and write random data for each language
 				for (String language : LANGUAGES) {
@@ -44,13 +44,11 @@ public class LanguageCSVGenerator {
 					for (int unitNum = 1; unitNum <= numUnits; unitNum++) {
 						int numQuizzes = RandomNumberGenerator.generateRandomNumber(MIN_QUIZZES, MAX_QUIZZES);
 						for (int quizNum = 1; quizNum <= numQuizzes; quizNum++) {
-							String questionType = QUESTION_TYPES[RandomNumberGenerator.generateRandomNumber(0, QUESTION_TYPES.length - 1)];
-							int questionPoints = QUESTION_POINTS[RandomNumberGenerator.generateRandomNumber(0, QUESTION_POINTS.length - 1)];
 							int numQuestions = RandomNumberGenerator.generateRandomNumber(MIN_QUESTIONS, MAX_QUESTIONS);
 							for (int questionNum = 1; questionNum <= numQuestions; questionNum++) {
-								String questionText = RandomNumberGenerator.generateRandomNumber(questionType);
-								writer.append(String.format("%s,%d,%d,%s,%d,%s\n", language, unitNum, quizNum,
-										questionType, questionPoints, questionText));
+								String questionType = QUESTION_TYPES[RandomNumberGenerator.generateRandomNumber(0, QUESTION_TYPES.length - 1)];
+								writer.append(String.format("%s,unit_%d,quiz_%d,%s\n", language, unitNum, quizNum,
+										questionType));
 							}
 						}
 					}
@@ -63,8 +61,6 @@ public class LanguageCSVGenerator {
 		} catch (IOException e) {
 			System.out.println("Error writing to CSV file: " + e.getMessage());
 		}
-
-		return
 	}
 
 	private Question selectQuestionType(int randInt) {
@@ -82,7 +78,7 @@ public class LanguageCSVGenerator {
 		}
 		if (randInt == 3) {
 			Map<String, String> matchMap = new HashMap<>();
-			int length = RandomNumberGenerator.generateRandomNumber(130);
+			int length = RandomNumberGenerator.generateRandomNumber(4, 8);
 			for (int i = 0; i < length; i++){
 				String engText = randomStringGenerator.generate();
 				String translatedText = randomStringGenerator.generate();
