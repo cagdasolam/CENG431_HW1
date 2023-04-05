@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class LanguageCSVGenerator {
 
-	private RandomStringGenerator randomStringGenerator = new RandomStringGenerator();
+	private final RandomStringGenerator randomStringGenerator = new RandomStringGenerator();
 
 	private static final String[] LANGUAGES = {"Turkish", "German", "Italian", "Spanish"};
 	private static final int MIN_UNITS = 60;
@@ -26,32 +26,38 @@ public class LanguageCSVGenerator {
 	private static final int MAX_QUIZZES = 10;
 	private static final int MIN_QUESTIONS = 8;
 	private static final int MAX_QUESTIONS = 15;
-	private static final String[] QUESTION_TYPES = {"reading", "listening", "speaking", "word-matching"};
-	private static final int[] QUESTION_POINTS = {10, 7, 8, 5};
+	private static final String[] QUESTION_TYPES = {"reading", "listening", "speaking", "matching"};
 
 	public void languageGenerate() {
 		try {
 			File langCsv = new File("./languages.csv");
-			if (!langCsv.exists()){
+			if (!langCsv.exists()) {
 				FileWriter writer = new FileWriter("languages.csv");
-
-				// Write header row to CSV file
-//				writer.append("Language,Unit,Quiz,Question Type,Question Points,Question\n");
 
 				// Generate and write random data for each language
 				for (String language : LANGUAGES) {
+					StringBuilder line = new StringBuilder(String.format("%s", language));
 					int numUnits = RandomNumberGenerator.generateRandomNumber(MIN_UNITS, MAX_UNITS);
 					for (int unitNum = 1; unitNum <= numUnits; unitNum++) {
 						int numQuizzes = RandomNumberGenerator.generateRandomNumber(MIN_QUIZZES, MAX_QUIZZES);
 						for (int quizNum = 1; quizNum <= numQuizzes; quizNum++) {
 							int numQuestions = RandomNumberGenerator.generateRandomNumber(MIN_QUESTIONS, MAX_QUESTIONS);
+							Map<String, Integer> questionTypeAmountMap = new HashMap<>();
+							questionTypeAmountMap.put("reading", 0);
+							questionTypeAmountMap.put("listening", 0);
+							questionTypeAmountMap.put("speaking", 0);
+							questionTypeAmountMap.put("matching", 0);
+
 							for (int questionNum = 1; questionNum <= numQuestions; questionNum++) {
 								String questionType = QUESTION_TYPES[RandomNumberGenerator.generateRandomNumber(0, QUESTION_TYPES.length - 1)];
-								writer.append(String.format("%s,unit_%d,quiz_%d,%s\n", language, unitNum, quizNum,
-										questionType));
+								questionTypeAmountMap.put(questionType, questionTypeAmountMap.get(questionType) + 1);
 							}
+							line.append(String.format(",unit %d,quiz %d,%dR,%dL,%dS,%dW", unitNum, quizNum,
+									questionTypeAmountMap.get("reading"), questionTypeAmountMap.get("listening"),
+									questionTypeAmountMap.get("speaking"), questionTypeAmountMap.get("matching")));
 						}
 					}
+					writer.append(line.append("\n"));
 				}
 
 				writer.flush();
@@ -60,38 +66,6 @@ public class LanguageCSVGenerator {
 			}
 		} catch (IOException e) {
 			System.out.println("Error writing to CSV file: " + e.getMessage());
-		}
-	}
-
-	private Question selectQuestionType(int randInt) {
-
-		if (randInt == 1) {
-			String engText = randomStringGenerator.generate();
-			String translatedText = randomStringGenerator.generate();
-			return new ReadingQuestion(engText, translatedText);
-		}
-		if (randInt == 2) {
-			String engText = randomStringGenerator.generate();
-			int length = RandomNumberGenerator.generateRandomNumber(130);
-			Audio audio = new Audio(length);
-			return new ListeningQuestion(engText, audio);
-		}
-		if (randInt == 3) {
-			Map<String, String> matchMap = new HashMap<>();
-			int length = RandomNumberGenerator.generateRandomNumber(4, 8);
-			for (int i = 0; i < length; i++){
-				String engText = randomStringGenerator.generate();
-				String translatedText = randomStringGenerator.generate();
-				matchMap.put(engText, translatedText);
-			}
-			return new WordMatchingQuestion(matchMap);
-		}
-		else {
-			int length1 = RandomNumberGenerator.generateRandomNumber(130);
-			Audio firstAudio = new Audio(length1);
-			int length2 = RandomNumberGenerator.generateRandomNumber(130);
-			Audio secondAudio = new Audio(length2);
-			return new SpeakingQuestion(firstAudio, secondAudio);
 		}
 	}
 
