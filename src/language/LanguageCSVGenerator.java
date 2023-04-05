@@ -42,6 +42,7 @@ public class LanguageCSVGenerator {
 						int numQuizzes = RandomNumberGenerator.generateRandomNumber(MIN_QUIZZES, MAX_QUIZZES);
 						for (int quizNum = 1; quizNum <= numQuizzes; quizNum++) {
 							int numQuestions = RandomNumberGenerator.generateRandomNumber(MIN_QUESTIONS, MAX_QUESTIONS);
+
 							Map<String, Integer> questionTypeAmountMap = new HashMap<>();
 							questionTypeAmountMap.put("reading", 0);
 							questionTypeAmountMap.put("listening", 0);
@@ -52,7 +53,7 @@ public class LanguageCSVGenerator {
 								String questionType = QUESTION_TYPES[RandomNumberGenerator.generateRandomNumber(0, QUESTION_TYPES.length - 1)];
 								questionTypeAmountMap.put(questionType, questionTypeAmountMap.get(questionType) + 1);
 							}
-							line.append(String.format(",unit %d,quiz %d,%dR,%dL,%dS,%dW", unitNum, quizNum,
+							line.append(String.format(";unit %d,quiz %d,%d,%d,%d,%d", unitNum, quizNum,
 									questionTypeAmountMap.get("reading"), questionTypeAmountMap.get("listening"),
 									questionTypeAmountMap.get("speaking"), questionTypeAmountMap.get("matching")));
 						}
