@@ -11,7 +11,8 @@ public class Language {
 
 	List<Unit> units = new ArrayList<>();
 
-	public Language(List<Unit> units) {
+	public Language(String languageName, List<Unit> units) {
+		this.languageName = languageName;
 		this.units = units;
 	}
 }
