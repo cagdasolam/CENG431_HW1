@@ -7,9 +7,27 @@ import java.util.List;
 
 public abstract class League {
 
-	private List<User> userList = new ArrayList<>();
+	private String name;
+	private List<User> users;
 
-	public League(List<User> userList) {
-		this.userList = userList;
+	public League(String name) {
+		this.name = name;
+		this.users = new ArrayList<>();
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 }

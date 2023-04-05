@@ -17,7 +17,6 @@ import java.util.Map;
 
 public class LanguageCSVGenerator {
 
-	private final RandomStringGenerator randomStringGenerator = new RandomStringGenerator();
 
 	private static final String[] LANGUAGES = {"Turkish", "German", "Italian", "Spanish"};
 	private static final int MIN_UNITS = 60;
@@ -53,7 +52,7 @@ public class LanguageCSVGenerator {
 								String questionType = QUESTION_TYPES[RandomNumberGenerator.generateRandomNumber(0, QUESTION_TYPES.length - 1)];
 								questionTypeAmountMap.put(questionType, questionTypeAmountMap.get(questionType) + 1);
 							}
-							line.append(String.format(";unit %d,quiz %d,%d,%d,%d,%d", unitNum, quizNum,
+							line.append(String.format(";%d,%d,%d,%d,%d,%d", unitNum, quizNum,
 									questionTypeAmountMap.get("reading"), questionTypeAmountMap.get("listening"),
 									questionTypeAmountMap.get("speaking"), questionTypeAmountMap.get("matching")));
 						}

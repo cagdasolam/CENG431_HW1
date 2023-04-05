@@ -6,8 +6,7 @@ import java.util.List;
 
 public class GoldLeague extends League{
 
-	public GoldLeague(List<User> userList) {
-		super(userList);
+	public GoldLeague(String name) {
+		super(name);
 	}
-
 }
