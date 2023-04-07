@@ -54,7 +54,7 @@ public class LanguageCreator {
 					Unit unit = new Unit(currentUnit, quizzes);
 					currentUnit++;
 					units.add(unit);
-					quizzes.clear();
+					quizzes = new ArrayList<>();
 				}
 
 				List<Question> questionList = new ArrayList<>();
