@@ -1,5 +1,6 @@
 import language.Language;
 import language.LanguageCreator;
+import mediator.Mediator;
 import user.User;
 import user.UserCreator;
 
@@ -9,14 +10,8 @@ import java.util.List;
 public class Main {
 	public static void main(String[] args) throws IOException {
 
-		LanguageCreator languageCreator = new LanguageCreator();
+		Mediator mediator = new Mediator();
 
-		List<Language> languages = languageCreator.createLanguages("languages.csv");
-
-
-		UserCreator userCreator = new UserCreator(languages);
-		List<User> users = userCreator.createUsers("users.csv");
-
-		System.out.println(users);
+		mediator.run();
 	}
 }

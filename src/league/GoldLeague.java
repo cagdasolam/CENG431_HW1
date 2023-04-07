@@ -15,7 +15,7 @@ public class GoldLeague extends League{
 	public List<User> getAdvancedUsers() {
 		this.getUsers().sort((user1, user2) -> user2.getTotalPoints() - user1.getTotalPoints());
 		return this.getUsers().subList(0, Math.min(this.getUsers().size(), 5))
-				.stream().filter(user -> user.getStreak() >= 7).collect(Collectors.toList());
+				.stream().filter(user -> user.getStreak() >= 7).toList();
 	}
 
 }

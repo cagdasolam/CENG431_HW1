@@ -10,7 +10,11 @@ import quiz.Quiz;
 import unit.Unit;
 import user.User;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Language implements ILanguage {
 
@@ -103,17 +107,51 @@ public class Language implements ILanguage {
 				.sum();
 	}
 
-	public Unit findUnitOfQuiz(int qNumber){
-		int totalQuiz = 0;
+	public List<League> getAllLeagues(){
+		return Stream.of(this.bronzeLeague, this.silverLeague, this.goldLeague, this.sapphireLeague, this.rubyLeague).toList();
+	}
 
-		for (Unit unit :
-				this.units) {
-			totalQuiz += unit.getQuizzes().size();
-			if (totalQuiz >= qNumber){
-				return unit;
-			}
+	public Unit findUnitOfQuiz(int qNumber){
+		AtomicInteger totalQuiz = new AtomicInteger();
+		return this.units.stream()
+				.filter(unit -> {
+					int unitQuizSize = unit.getQuizzes().size();
+					totalQuiz.addAndGet(unitQuizSize);
+					return totalQuiz.get() >= qNumber;
+				})
+				.findFirst()
+				.orElse(this.units.get(this.units.size() - 1));
+	}
+
+	public Quiz findLastQuiz(int qNumber) {
+		List<Quiz> allQuizzes = this.units.stream()
+				.flatMap(unit -> unit.getQuizzes().stream()).toList();
+
+		if (allQuizzes.isEmpty()) {
+			return null;
 		}
-		return this.units.get(this.units.size() - 1);
+
+		int lastQuizNumber = Math.min(qNumber, allQuizzes.size());
+		return allQuizzes.get(allQuizzes.size() - lastQuizNumber);
+	}
+
+	@Override
+	public List<User> getAllUsers(){
+		return Stream.of(this.bronzeLeague, this.silverLeague, this.goldLeague, this.sapphireLeague, this.rubyLeague)
+				.flatMap(league -> league.getUsers().stream()).toList();
+	}
+
+	@Override
+	public String toString() {
+		return "Language{" +
+				"languageName='" + languageName + '\'' +
+				", units=" + units +
+				", bronzeLeague=" + bronzeLeague +
+				", silverLeague=" + silverLeague +
+				", goldLeague=" + goldLeague +
+				", sapphireLeague=" + sapphireLeague +
+				", rubyLeague=" + rubyLeague +
+				'}';
 	}
 }
 

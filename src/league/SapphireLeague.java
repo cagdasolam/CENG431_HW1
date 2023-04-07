@@ -11,14 +11,11 @@ public class SapphireLeague extends League{
 		super(name);
 	}
 
-
-
 	@Override
 	public List<User> getAdvancedUsers() {
 		return this.getUsers().stream()
 				.filter(user -> (user.getStreak() >= 30 && user.getTotalPoints() > 5000)
-						|| user.getCurrentUnit().getUnitNumber() >= 10)
-				.collect(Collectors.toList());
+						|| user.getCurrentUnit().getUnitNumber() >= 10).toList();
 	}
 
 }

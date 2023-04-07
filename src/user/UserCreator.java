@@ -2,6 +2,7 @@ package user;
 
 import language.Language;
 import league.League;
+import quiz.Quiz;
 import random_generator.RandomNumberGenerator;
 import unit.Unit;
 
@@ -35,10 +36,9 @@ public class UserCreator {
 					totalPoints = Integer.parseInt(fields[2]);
 				}
 				int numQuizzes = RandomNumberGenerator.generateRandomNumber(MIN_QUIZZES, selectedLanguage.getTotalQuizzes()); // Random number of quizzes
-//				int currentUnit = RandomNumberGenerator.generateRandomNumber(numQuizzes); // Random current unit between 1 and numQuizzes
-
 				Unit unit = selectedLanguage.findUnitOfQuiz(numQuizzes);
-				User user = new User(userName, password, selectedLanguage, unit, streak, totalPoints);
+				Quiz quiz = selectedLanguage.findLastQuiz(numQuizzes);
+				User user = new User(userName, password, selectedLanguage, unit, streak, totalPoints, quiz);
 				addUserToBronzeLeague(selectedLanguage, user);
 				users.add(user);
 			}

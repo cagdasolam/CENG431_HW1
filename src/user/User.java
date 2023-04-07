@@ -13,50 +13,20 @@ public class User implements IUser {
 	private String userName;
 	private String password;
 	private Language selectedLanguage;
-	//	private League league;
 	private Unit currentUnit;
 	private int streak;
 	private int totalPoints;
 	private Quiz lastQuiz;
 
-	public User(String userName, String password, Language selectedLanguage, Unit currentUnit, int streak, int totalPoints) {
+	public User(String userName, String password, Language selectedLanguage, Unit currentUnit, int streak, int totalPoints, Quiz lastQuiz) {
 		this.userName = userName;
 		this.password = password;
 		this.selectedLanguage = selectedLanguage;
-//		this.league = league;
 		this.currentUnit = currentUnit;
 		this.streak = streak;
 		this.totalPoints = totalPoints;
+		this.lastQuiz = lastQuiz;
 	}
-
-	@Override
-	public void takesQuiz(Quiz quiz) {
-		List<Question> questionList = quiz.getQuestionList();
-		for (Question question : questionList) {
-			answerQuestion(question);
-		}
-		this.lastQuiz = quiz;
-	}
-
-	@Override
-	public void answerQuestion(Question question) {
-
-		boolean givenAnswer = new Random().nextBoolean();
-		question.setGivenAnswer(givenAnswer);
-
-		if (givenAnswer) {
-			this.totalPoints += question.getPoint();
-		}
-
-	}
-//
-//	public Quiz getNextQuiz(Quiz quiz){
-//		if (this.lastQuiz.getQuizNumber() == quiz.getQuizNumber()){
-//			return
-//		}
-//		return this.currentUnit.getQuizzes().get(quiz.getQuizNumber() + 1);
-//	}
-
 
 	public String getUserName() {
 		return userName;
@@ -104,5 +74,38 @@ public class User implements IUser {
 
 	public void setLastQuiz(Quiz lastQuiz) {
 		this.lastQuiz = lastQuiz;
+	}
+
+	@Override
+	public void takesQuiz(Quiz quiz) {
+		List<Question> questionList = quiz.getQuestionList();
+		for (Question question : questionList) {
+			answerQuestion(question);
+		}
+		this.lastQuiz = quiz;
+	}
+
+	@Override
+	public void answerQuestion(Question question) {
+
+		boolean givenAnswer = new Random().nextBoolean();
+		question.setGivenAnswer(givenAnswer);
+
+		if (givenAnswer) {
+			this.totalPoints += question.getPoint();
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "User{" +
+				"userName='" + userName + '\'' +
+				", password='" + password + '\'' +
+				", selectedLanguage=" + selectedLanguage.getLanguageName() +
+				", currentUnit=" + currentUnit.getUnitNumber() +
+				", streak=" + streak +
+				", totalPoints=" + totalPoints +
+				", lastQuiz=" + lastQuiz.getQuizNumber() +
+				'}';
 	}
 }
