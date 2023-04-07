@@ -1,9 +1,5 @@
 import language.Language;
-import language.LanguageCSVGenerator;
 import language.LanguageCreator;
-import question.Question;
-import question.ReadingQuestion;
-import random_generator.RandomStringGenerator;
 import user.User;
 import user.UserCreator;
 
@@ -13,8 +9,12 @@ import java.util.List;
 public class Main {
 	public static void main(String[] args) throws IOException {
 
+		LanguageCreator languageCreator = new LanguageCreator();
 
-		UserCreator userCreator = new UserCreator();
+		List<Language> languages = languageCreator.createLanguages("languages.csv");
+
+
+		UserCreator userCreator = new UserCreator(languages);
 		List<User> users = userCreator.createUsers("users.csv");
 
 		System.out.println(users);

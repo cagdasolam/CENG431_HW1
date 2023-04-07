@@ -6,12 +6,13 @@ import league.League;
 import league.RubyLeague;
 import league.SapphireLeague;
 import league.SilverLeague;
+import quiz.Quiz;
 import unit.Unit;
 import user.User;
 
 import java.util.List;
 
-public class Language {
+public class Language implements ILanguage {
 
 	private String languageName;
 
@@ -89,8 +90,30 @@ public class Language {
 		this.rubyLeague = rubyLeague;
 	}
 
-	public void addUserToLeague(User user, String leagueName){
 
+	@Override
+	public int getTotalUnit() {
+		return this.units.size();
+	}
+
+	@Override
+	public int getTotalQuizzes() {
+		return this.units.stream()
+				.mapToInt(unit -> unit.getQuizzes().size())
+				.sum();
+	}
+
+	public Unit findUnitOfQuiz(int qNumber){
+		int totalQuiz = 0;
+
+		for (Unit unit :
+				this.units) {
+			totalQuiz += unit.getQuizzes().size();
+			if (totalQuiz >= qNumber){
+				return unit;
+			}
+		}
+		return this.units.get(this.units.size() - 1);
 	}
 }
 

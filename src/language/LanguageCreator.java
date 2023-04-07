@@ -12,6 +12,7 @@ import random_generator.RandomStringGenerator;
 import unit.Unit;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,6 +25,10 @@ public class LanguageCreator {
 	private static final RandomStringGenerator randomStringGenerator = new RandomStringGenerator();
 
 	public List<Language> createLanguages(String fileName) throws IOException {
+		File langCsv = new File("./languages.csv");
+		if (!langCsv.exists()) {
+			new LanguageCSVGenerator().languageGenerate();
+		}
 		List<Language> languages = new ArrayList<>();
 		BufferedReader br = new BufferedReader(new FileReader(fileName));
 		String line;

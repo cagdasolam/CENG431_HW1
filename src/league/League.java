@@ -30,4 +30,8 @@ public abstract class League {
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
+
+	public abstract List<User> getAdvancedUsers();
+
+
 }

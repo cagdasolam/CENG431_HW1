@@ -3,17 +3,17 @@ package question;
 public class Question implements IQuestionInterface {
 
 	private int point;
-	private boolean isTrue;
+	private boolean givenAnswer;
 
 	public int getPoint() {
 		return point;
 	}
 
-	public boolean isTrue() {
-		return isTrue;
+	public boolean isGivenAnswer() {
+		return givenAnswer;
 	}
 
-	public void setTrue(boolean aTrue) {
-		isTrue = aTrue;
+	public void setGivenAnswer(boolean givenAnswer) {
+		this.givenAnswer = givenAnswer;
 	}
 }

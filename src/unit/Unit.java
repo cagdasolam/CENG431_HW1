@@ -5,7 +5,7 @@ import quiz.Quiz;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Unit {
+public class Unit implements IUnit {
 
 	private int unitNumber;
 	private List<Quiz> quizzes = new ArrayList<>();

@@ -1,9 +1,9 @@
 package user;
 
 import language.Language;
-import language.LanguageCreator;
 import league.League;
 import random_generator.RandomNumberGenerator;
+import unit.Unit;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -15,11 +15,9 @@ public class UserCreator {
 
 	private static final int MIN_QUIZZES = 6; // Minimum number of quizzes a user will take
 	private static final int MAX_QUIZZES = 10; // Maximum number of quizzes a user will take
-	LanguageCreator languageCreator = new LanguageCreator();
+	private List<Language> languages;
 
-	private List<Language> languages = languageCreator.createLanguages("languages.csv");
-
-	public UserCreator() throws IOException {}
+	public UserCreator(List<Language> languages) throws IOException {this.languages = languages;}
 
 	public List<User> createUsers(String fileName) throws IOException {
 		List<User> users = new ArrayList<>();
@@ -36,9 +34,11 @@ public class UserCreator {
 				if (fields.length >= 3) {
 					totalPoints = Integer.parseInt(fields[2]);
 				}
-				int numQuizzes = RandomNumberGenerator.generateRandomNumber(MIN_QUIZZES, MAX_QUIZZES); // Random number of quizzes
-				int currentUnit = RandomNumberGenerator.generateRandomNumber(numQuizzes); // Random current unit between 1 and numQuizzes
-				User user = new User(userName, password, selectedLanguage, currentUnit, streak, totalPoints);
+				int numQuizzes = RandomNumberGenerator.generateRandomNumber(MIN_QUIZZES, selectedLanguage.getTotalQuizzes()); // Random number of quizzes
+//				int currentUnit = RandomNumberGenerator.generateRandomNumber(numQuizzes); // Random current unit between 1 and numQuizzes
+
+				Unit unit = selectedLanguage.findUnitOfQuiz(numQuizzes);
+				User user = new User(userName, password, selectedLanguage, unit, streak, totalPoints);
 				addUserToBronzeLeague(selectedLanguage, user);
 				users.add(user);
 			}
