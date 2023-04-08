@@ -107,10 +107,12 @@ public class Language implements ILanguage {
 				.sum();
 	}
 
+	@Override
 	public List<League> getAllLeagues(){
 		return Stream.of(this.bronzeLeague, this.silverLeague, this.goldLeague, this.sapphireLeague, this.rubyLeague).toList();
 	}
 
+	@Override
 	public Unit findUnitOfQuiz(int qNumber){
 		AtomicInteger totalQuiz = new AtomicInteger();
 		return this.units.stream()
@@ -123,6 +125,7 @@ public class Language implements ILanguage {
 				.orElse(this.units.get(this.units.size() - 1));
 	}
 
+	@Override
 	public Quiz findLastQuiz(int qNumber) {
 		List<Quiz> allQuizzes = this.units.stream()
 				.flatMap(unit -> unit.getQuizzes().stream()).toList();

@@ -36,6 +36,14 @@ public class User implements IUser {
 		this.userName = userName;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public Language getSelectedLanguage() {
 		return selectedLanguage;
 	}
@@ -94,6 +102,20 @@ public class User implements IUser {
 		if (givenAnswer) {
 			this.totalPoints += question.getPoint();
 		}
+	}
+
+	@Override
+	public int getSolvedQuizzesNumber() {
+		int quizNumber = 0;
+		for (Unit unit : this.selectedLanguage.getUnits()) {
+			if (this.currentUnit.getUnitNumber() > unit.getUnitNumber()) {
+				quizNumber += unit.getQuizzes().size();
+			}
+			if (this.currentUnit.getUnitNumber() == unit.getUnitNumber()) {
+				quizNumber += this.lastQuiz.getQuizNumber();
+			}
+		}
+		return quizNumber;
 	}
 
 	@Override

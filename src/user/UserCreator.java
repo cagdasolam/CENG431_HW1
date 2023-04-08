@@ -8,6 +8,7 @@ import unit.Unit;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,12 +30,9 @@ public class UserCreator {
 			if (fields.length >= 2) {
 				String userName = fields[0];
 				String password = fields[1];
-				Language selectedLanguage = languages.get(RandomNumberGenerator.generateRandomNumber(0,3));
+				Language selectedLanguage = languages.get(RandomNumberGenerator.generateRandomNumber(0, 3));
 				int streak = RandomNumberGenerator.generateRandomNumber(1, 10); // Random streak between 1 and 10
-				int totalPoints = 0; // Initialize totalPoints to 0
-				if (fields.length >= 3) {
-					totalPoints = Integer.parseInt(fields[2]);
-				}
+				int totalPoints = 0;
 				int numQuizzes = RandomNumberGenerator.generateRandomNumber(MIN_QUIZZES, selectedLanguage.getTotalQuizzes()); // Random number of quizzes
 				Unit unit = selectedLanguage.findUnitOfQuiz(numQuizzes);
 				Quiz quiz = selectedLanguage.findLastQuiz(numQuizzes);
@@ -53,6 +51,21 @@ public class UserCreator {
 		League newBronze = selectedLanguage.getBronzeLeague();
 		newBronze.setUsers(usersOfLeague);
 		selectedLanguage.setBronzeLeague(newBronze);
+	}
+
+	public void writeToFile(String fileName, List<User> users) throws IOException {
+
+		StringBuilder lineToWrite = new StringBuilder();
+
+		for (User user : users) {
+			lineToWrite.append(String.format("%s;%s;%s;%d;%d;%d\n", user.getUserName(), user.getPassword(), user.getSelectedLanguage().getLanguageName(), user.getCurrentUnit().getUnitNumber(), user.getSolvedQuizzesNumber(), user.getTotalPoints()));
+		}
+
+		FileWriter writer = new FileWriter(fileName);
+		writer.append(lineToWrite);
+
+		writer.flush();
+		writer.close();
 	}
 
 }

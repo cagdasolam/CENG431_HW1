@@ -8,4 +8,5 @@ public interface IUser {
 	void takesQuiz(Quiz quiz);
 
 	void answerQuestion(Question question);
+	int getSolvedQuizzesNumber();
 }

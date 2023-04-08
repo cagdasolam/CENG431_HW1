@@ -1,6 +1,6 @@
 package question;
 
-public class Question implements IQuestionInterface {
+public class Question {
 
 	private int point;
 	private boolean givenAnswer;
@@ -9,7 +9,7 @@ public class Question implements IQuestionInterface {
 		return point;
 	}
 
-	public boolean isGivenAnswer() {
+	public boolean getGivenAnswer() {
 		return givenAnswer;
 	}
 
